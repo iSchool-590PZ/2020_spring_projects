@@ -27,14 +27,8 @@ Each player takes turns to move their piece to an adjacent slot (diagonal moves 
 
 ### Game Implementation
 
-I implemented an interactive game in Python 3.2 using a list of lists (two-dimensional array). Each player is given nine beads at the start of the game. The game randomly selects one player i.e., either the computer or the human player to play first. The human player is allotted as player ‘1’ and the machine is allotted as player ‘2’. My game board looks something like:
-A     B     C
-  D   E   F 
-    G H I
-J K L   M N O
-    P Q R
-  S   T   U
-V     W     X
+I implemented an interactive game in Python 3.2 using a list of lists (two-dimensional array). Each player is given nine beads at the start of the game. The game randomly selects one player i.e., either the computer or the human player to play first. The human player is allotted as player ‘1’ and the machine is allotted as player ‘2’. I chose alpahbets from A-X to denote the 24 empty slots.
+
 In phase-I of the game, a player chooses to input his move by choosing one of the empty alphabets to place a bead on the board. The game works in phase I, till a player uses all the 9 beads. A player’s bead is indicated on the board by replacing the alphabet with ‘1’ for a human player and ‘2’ for the machine. While placing the beads, if a player forms a mill i.e., three of a player’s beads are placed either horizontally or vertically, the player may choose to remove one of the opponent’s beads. Being a variant of the original game, players may remove an opponent’s bead even if it is part of a mill. Every move played by each player is stored in a nested dictionary along with the phase in which the move was played, wins(mill formations), looses(opponent’s mill formations) that arose because of the move, and the player(1 or 2) of the move. 
 
 After the 9 beads of either player are played, we enter into the second phase of the game. Here, a player may only move his bead to an adjacent slot either horizontally or vertically. A player chooses to input his move by entering two alphabets which denote the position from which a bead moves to another position. For example, ‘AB’ indicate the movement of a bead from position ‘A’ to position ‘B’. During this process, if a player successfully forms a mill i.e., three of a player’s beads are placed either horizontally or vertically, the player may choose to remove one of the opponent’s beads. As a variant of the original game and to make it fun, after a player removes one of the opponent’s beads, just for the next move he can place the bead anywhere and does not need to adhere to the adjacency move criteria. 
