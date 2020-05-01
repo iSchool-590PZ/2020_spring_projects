@@ -11,19 +11,6 @@
 * Aim of the game is to reduce opponents pieces to two so they can no longer form a mill
 * An empty game board looks like [this](https://cdn.printablepaper.net/samples/Morris_Nine_Men.png)
 
-# IS590PZ 2020 Spring Student Projects
-
-## FINAL PROJECT: NINE MEN'S MORRIS AI PLAYER
-
-### About the Game
-* It is a two player strategy board game that dates back to the Roman Empire
-* The board consists of a grid with 24 intersection points
-* At the start of the game, each player is given 9 pieces 
-* A mills is having 3 same pieces aligned horizontally or vertically
-* Forming a mill, allows us to eliminate opponent’s piece from the board
-* Aim of the game is to reduce opponents pieces to two so they can no longer form a mill
-* An empty game board looks like [this](https://cdn.printablepaper.net/samples/Morris_Nine_Men.png)
-
 ### Game Rules
 Game is divided into 2 phases:
 * PHASE I: Placing pieces
@@ -55,7 +42,6 @@ After the 9 beads of either player are played, we enter into the second phase of
 A game is won if:
 1. The opponent is left with just 2 beads, making it impossible to form a mill
 2. A player cannot move to an empty slot because of being surrounded by opponent’s beads
-
 
 How does the AI work?
 When the first game is played, the machine records all the moves that occurred during the game.
