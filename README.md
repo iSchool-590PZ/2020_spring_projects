@@ -1,31 +1,72 @@
 # IS590PZ 2020 Spring Student Projects
-Student final projects from this semester are all public forks linked from this repository.  This is just one of the assignments students worked on for the course, but this is the only one they are permitted to publish openly.
 
-## Final Project Expectations:
+## FINAL PROJECT: NINE MEN'S MORRIS AI PLAYER
 
-You have considerable flexibility about specifics and you will publish your project openly (as a fork from this project repository) to allow making it part of your portfolio if you choose.  Work alone or in a team of two students. 
+### About the Game
+* It is a two player strategy board game that dates back to the Roman Empire
+* The board consists of a grid with 24 intersection points
+* At the start of the game, each player is given 9 pieces 
+* A mills is having 3 same pieces aligned horizontally or vertically
+* Forming a mill, allows us to eliminate opponent’s piece from the board
+* Aim of the game is to reduce opponents pieces to two so they can no longer form a mill
+* An empty game board looks like [this](https://cdn.printablepaper.net/samples/Morris_Nine_Men.png)
 
-Regardless of topic, it must involve notable amounts of original work of your own, though it can of course use existing libraries or be inspired in part by some other published work(s). 
+# IS590PZ 2020 Spring Student Projects
 
-PLAGIARISM IS NOT TOLERATED. From the first commit through all production of documentation and code, it must be crystal clear which, if any, parts of the project were based on or duplicated from any other source(s) all of which must be cited.  This should be so specific that any evaluator can easily see which lines of code are original work and which aren't.  Same for all documentation including images, significant algorithms, etc.
+## FINAL PROJECT: NINE MEN'S MORRIS AI PLAYER
 
-## Example topical ideas from which to choose:
+### About the Game
+* It is a two player strategy board game that dates back to the Roman Empire
+* The board consists of a grid with 24 intersection points
+* At the start of the game, each player is given 9 pieces 
+* A mills is having 3 same pieces aligned horizontally or vertically
+* Forming a mill, allows us to eliminate opponent’s piece from the board
+* Aim of the game is to reduce opponents pieces to two so they can no longer form a mill
+* An empty game board looks like [this](https://cdn.printablepaper.net/samples/Morris_Nine_Men.png)
 
-(Making original variations of puzzles and games isn't as difficult as it may seem -- we'll discuss this in class. _Though admittedly, making *good* game variations -- that are well-balanced, strategically interesting, with good replay value_ can take expertise or luck and play-testing with revisions.  I'm not expecting that here, given the short time you have.)
+### Game Rules
+Game is divided into 2 phases:
+* PHASE I: Placing pieces
+Each player takes turns placing their 9 pieces on the empty slots of the board
+If a player is able to form a mill, they can remove one of opponent's piece that is not part of a mill
 
-1. Devise your own new _original_ type of logic puzzle or an _original variation_ of existing puzzle type. Your proram should be able to randomly generate many puzzles of your type and to verify that all puzzles generated comply with the standard meta-rule that only one valid solution exists. It needs to output the workable puzzles in a way that a human can print or view them conveniently to try solving them, and support either entering a solution for checking or have the program also display the solution for each puzzle when requested. An interactive UI to also "play" the puzzles after generation is *not* required.
+* PHASE II: Moving pieces
+Each player takes turns to move their piece to an adjacent slot (diagonal moves are not allowed) to form mills 
 
-2. OR develop an AI game player for an _original variation_ of some existing strategy game.  If you do this, it needs to be set up so it can either play computer-vs-computer and/or against human players with a reasonable text or graphical UI. 2B. If two teams want to independently develop AI players for the same type of game variant as each other (but using different algorithms, strategies, and/or data structures) so they can compete, that is okay.
+### Variation from existing game
+* In the second phase, if a player forms a mill, in the next turn they are allowed to move to any empty slot on the board
 
-3. Computationally 'Solve' a game.  _Background: Some strategic games, especially those of perfect information are known to be "solved". See https://en.wikipedia.org/wiki/Solved_game, which we discussed in class._  Sometimes these proofs are done through mathematical analysis, other times through computational verification. If you choose this option, you can either write your own code or modify some existing code that plays a game, to exhaustively analyze a game to attempt to prove if it is "solved" in this way for certain configurations. Slight changes to rules or conditions of a known game can alter this outcome and require reanalysis.
+* Players may remove pieces that even part of a mill
 
-4. Do a detailed written code review with algorithm analysis. In this option, you would not be creating any new original game or puzzle variant, and not even doing significant programming. Instead, you would write a detailed analysis of the algorithmic performance of an existing open source program (related to puzzles or games). Early in your analysis, use a code profiler to identify the functions or sections that significantly impact cpu time performance. Then do your own Big-O/Big-Theta analysis of those potential "bottlenecks". Include performance measurements from running the program in different situations (such as to verify your Big-O assessment as the data size grows), and profiling results. Try to identify any aspect of the program you can make more efficient. Be aware that even submitting someone else's _analysis_ can easily be plagiarism, so you must be careful. 
+### Game Implementation
 
-## Deliverables and other Requirements:
+I implemented an interactive game in Python 3.2 using a list of lists (two-dimensional array). Each player is given nine beads at the start of the game. The game randomly selects one player i.e., either the computer or the human player to play first. The human player is allotted as player ‘1’ and the machine is allotted as player ‘2’. My game board looks something like:
+A     B     C
+  D   E   F 
+    G H I
+J K L   M N O
+    P Q R
+  S   T   U
+V     W     X
+In phase-I of the game, a player chooses to input his move by choosing one of the empty alphabets to place a bead on the board. The game works in phase I, till a player uses all the 9 beads. A player’s bead is indicated on the board by replacing the alphabet with ‘1’ for a human player and ‘2’ for the machine. While placing the beads, if a player forms a mill i.e., three of a player’s beads are placed either horizontally or vertically, the player may choose to remove one of the opponent’s beads. Being a variant of the original game, players may remove an opponent’s bead even if it is part of a mill. Every move played by each player is stored in a nested dictionary along with the phase in which the move was played, wins(mill formations), looses(opponent’s mill formations) that arose because of the move, and the player(1 or 2) of the move. 
 
-* Have some fun!
-* In your own fork, please replace this README.md file's contents with a good introduction to your own project. 
-* Even with options 1-3 above, you will need to describe the overall performance characteristics of your program and explain why you chose the data structures and core algorithm(s) you did. It's in the title of this course!
-* If your team has more than one student, take efforts to see that each makes git commits. In addition, your README documentation should include a summary of how you shared the work.
-* Recorded video or live in-class presentation of your work. 
+After the 9 beads of either player are played, we enter into the second phase of the game. Here, a player may only move his bead to an adjacent slot either horizontally or vertically. A player chooses to input his move by entering two alphabets which denote the position from which a bead moves to another position. For example, ‘AB’ indicate the movement of a bead from position ‘A’ to position ‘B’. During this process, if a player successfully forms a mill i.e., three of a player’s beads are placed either horizontally or vertically, the player may choose to remove one of the opponent’s beads. As a variant of the original game and to make it fun, after a player removes one of the opponent’s beads, just for the next move he can place the bead anywhere and does not need to adhere to the adjacency move criteria. 
 
+A game is won if:
+1. The opponent is left with just 2 beads, making it impossible to form a mill
+2. A player cannot move to an empty slot because of being surrounded by opponent’s beads
+
+
+How does the AI work?
+When the first game is played, the machine records all the moves that occurred during the game.
+
+A typical move consists of:
+1. the move played
+2. player who played the move
+3. wins (initialized to 0)
+4. losses (initialized to 0)
+5. phase (1, 2 or 3; Here, Phase-3 indicates when an opponents bead is removed)
+
+Whenever a human player forms a mill, the key ‘losses’ of all the moves that lead to the formation of a mill is incremented by 1.  Likewise, when the machine forms a mill, the key ‘wins’ of all the moves that lead to the formation of a mill is incremented by 1. When the machine comes across a move that is already memorized, it plays the move that has a high ‘wins’ count. If the ‘wins’ count is 0, the machine chooses to randomly generate the next move.
+
+I chose a list of lists (2D array) to implement the board because of the ease of retrieving the beads at any given combination of row and column. I chose a nested dictionary to implement the played moves because of it’s constant retrieval time.
